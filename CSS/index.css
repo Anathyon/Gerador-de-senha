@@ -70,6 +70,7 @@ body {
     color: #fff;
     box-shadow: 0 0 8px #179b06, 0 0 15px #179b06, 0 0 20px #179b06;
     text-shadow: 0 0 8px #179b06, 0 0 15px #179b06;
+    border: none;
 }
 #btn_gera_senha:hover,
 #btn_gera_senha.active {
@@ -123,9 +124,11 @@ body {
     cursor: pointer;
     box-shadow: 0 0 1rem 0.2rem #1a1414;
 }
-mobile{
+
+.mobile{
     visibility: visible;
 }
+
 @media (hover: none) {
     #btn_gera_senha {
         background-color: #0f6903;
@@ -137,7 +140,6 @@ mobile{
     }
 }
 
-/* Telas Pequenas */
 @media (min-width: 249px) and (max-width: 480px) 
 {
     #logo img {
@@ -159,9 +161,6 @@ mobile{
     }
 }
 
-
-/* ----------------------------------------------------------------------------------------- */
-/* Telas Médias */
 @media (min-width: 481px)  and (max-width: 1024px) 
 {
     #logo img {
@@ -180,8 +179,7 @@ mobile{
     }
 }
 
-/* ----------------------------------------------------------------------------------------- */
-/* Telas Grandes */
+
 @media screen and (min-width: 1024px) 
 {
     #logo img {
