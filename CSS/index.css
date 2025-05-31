@@ -79,11 +79,13 @@ body {
 }
 
 #historico_dialog{
+    color: #FFF;
     position: fixed;
     border: none;
     border-radius: 1.2rem;
     padding: 3%;
-
+    background: linear-gradient(120deg, #000000, #000000a2);
+    box-shadow: 0 0 8px #179b06, 0 0 15px #179b06, 0 0 20px #179b06;
 }
 
 .bts_org{
