@@ -7,13 +7,12 @@
 body {
     background-color: #1a1414;
     color: #ffffff;
-    font-family: sans-serif;
+    font-family: "WDXL Lubrifont TC", sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    width: 100%;
     flex-direction: column;
+    font-size: 1.5rem;
 }
 
 #logo {
@@ -21,8 +20,8 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    max-width: 20vw; 
-    margin-bottom: 2vh; 
+    max-width: 20dvw; 
+    margin-bottom: 2dvh;
 }
 
 #logo img {
@@ -30,11 +29,17 @@ body {
     height: auto; 
 }
 
+#valor {
+    width: 100%;
+}
+
 #conteudo_principal {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem; 
-    max-width: 80%; 
+    width: 100rem; 
 }
 
 #local_senha {
@@ -55,14 +60,14 @@ body {
     text-align: center;
     padding: 1rem; 
     transition: transform 0.5s;
+    border-radius: 1.5rem;
 }
 
-#senha:hover,
-#senha.active {
+#senha:hover, #senha.active {
     transform: scale(1.05);
 }
 
-#btn_gera_senha {
+.bt_style {
     border-radius: 0.5rem;
     padding: 0.7rem; 
     background-color: #179b06;
@@ -72,12 +77,45 @@ body {
     text-shadow: 0 0 8px #179b06, 0 0 15px #179b06;
     border: none;
 }
-#btn_gera_senha:hover,
-#btn_gera_senha.active {
+
+#historico_dialog{
+    position: fixed;
+    border: none;
+    border-radius: 1.2rem;
+    padding: 3%;
+
+}
+
+.bts_org{
+    margin-top: 3%;
+    justify-content: space-around;
+    display: flex;
+    left: 50%;
+}
+
+li {
+    list-style: none;
+}
+
+#historico_dialog::backdrop{
+    background-color: #000000c9;
+}
+
+.bt_style:hover,.bt_style.active {
     transform: scale(1.05);
     background-color: #0f6903;
     box-shadow: 0 0 6px #1eff00, 0 0 12px #1eff00, 0 0 18px #1eff00;
     text-shadow: 0 0 6px #1eff00, 0 0 12px #1eff00;
+}
+
+#titulo{
+    border-radius: 1.5rem;
+    border: none;
+    font-size: 1.5rem;
+    padding: 2%;
+    background-color: #179b06;
+    color: #FFF;
+    margin-bottom: 2%;
 }
 
 .hide {
@@ -91,6 +129,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     visibility: hidden;
+    border-radius: 1.5rem;
 }
 
 #senha:hover + #sp_hov,
@@ -146,13 +185,14 @@ body {
         width: 20rem; 
         height: auto; 
     }
-    #logo {
-        max-width: 50%; 
-        margin-bottom: 2vh;
-    }
     #conteudo_principal {
-        max-width: 80%;
+        width: 100%;
     }
+
+    #valor {
+        text-align: center;
+    }
+
     #local_senha {
         max-width: 80%;
     }
@@ -171,6 +211,11 @@ body {
         max-width: 30vw; 
         margin-bottom: 3vh;
     }
+
+    #valor {
+        text-align: center;
+    }
+
     #conteudo_principal {
         max-width: 30vw;
     }
@@ -185,6 +230,9 @@ body {
     #logo img {
         width: 30rem; 
         height: auto; 
+    }
+    #valor {
+        text-align: center;
     }
     #logo {
         max-width: 30vw; 

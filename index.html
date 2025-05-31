@@ -6,21 +6,39 @@
     <link rel="icon" href="./Imagens/icon.png">
     <title>Gerador de senhas</title>
     <link rel="stylesheet" href="CSS/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
 </head>
 <body>
      <header id="logo">
         <img src="./Imagens/Gerador de senhas.png" alt="Logo-lendária" draggable="false">
     </header>
-     <main id="conteudo_principal">
+   <main id="conteudo_principal">
         <span id="valor">Quantidade de caracteres:<span id="Quantidade"></span></span>
         <input type="range" min="8" max="25" value="8" id="range">
-        <button id="btn_gera_senha">CLIQUE E GERE SUA SENHA</button>
-     </main>
-     <section id="local_senha" class="hide">
+        <label for="titulo">Título para senha:</label>
+        <input maxlength="30" type="text" id="titulo" placeholder="Título da senha">
+        <button id="btn_gera_senha" class="bt_style">GERE SUA SENHA</button>
+      
+      <section> 
+          <button id="btn_exibir_historico" class="bt_style">EXIBIR HISTÓRICO</button> 
+          <dialog id="historico_dialog">
+              <H1> Histórico de senhas</H1>
+              <ul id="historico_lista"></ul>
+            <section class="bts_org">
+              <button id="btn_fechar" class="bt_style">FECHAR</button>
+              <button id="btn_limpar_historico" class="bt_style">LIMPAR HISTÓRICO</button>
+            </section>
+          </dialog>
+      </section>
+
+      <section id="local_senha" class="hide">
         <span id="txt_senha">Sua senha gerada foi:</span>
         <span id="senha"></span>
         <span id="sp_hov" class="mobile">Clique sobre sua senha para a copiar! </span> 
-     </section>   
+      </section>   
+   </main>
     <script src="/script_js/index.js"></script>
 </body>
 </html>
