@@ -39,7 +39,8 @@ body {
     justify-content: center;
     align-items: center;
     gap: 1rem; 
-    width: 100rem; 
+    width: 100%; 
+    height: auto;
 }
 
 #local_senha {
@@ -86,6 +87,8 @@ body {
     padding: 3%;
     background: linear-gradient(120deg, #000000, #000000a2);
     box-shadow: 0 0 8px #179b06, 0 0 15px #179b06, 0 0 20px #179b06;
+    left: 37%;
+    top: 20%;
 }
 
 .bts_org{
@@ -100,7 +103,7 @@ li {
 }
 
 #historico_dialog::backdrop{
-    background-color: #000000c9;
+    background-color: #000000e7;
 }
 
 .bt_style:hover,.bt_style.active {
@@ -201,6 +204,10 @@ li {
     #btn_gera_senha {
         padding: 1rem;
     }
+    #historico_dialog{
+    left: 13%;
+    top: 20%;
+    }
 }
 
 @media (min-width: 481px)  and (max-width: 1024px) 
@@ -224,6 +231,9 @@ li {
     #local_senha {
         max-width: 40vw;
     }
+      #historico_dialog{
+       left: 30%;
+    }
 }
 
 
@@ -239,9 +249,6 @@ li {
     #logo {
         max-width: 30vw; 
         margin-bottom: 3vh;
-    }
-    #conteudo_principal {
-        max-width: 30vw;
     }
     #local_senha {
         max-width: 40vw;
