@@ -4,7 +4,7 @@
   "description": "O Gerador de Senhas é um projeto desenvolvido em TypeScript que permite a criação de senhas aleatórias de forma prática e personalizada. Ele oferece a possibilidade de ajustar o tamanho da senha, escolher diferentes tipos de caracteres, e copiar a senha gerada diretamente para a área de transferência.",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && powershell Move-Item -Path ./script_js/service_worker.js -Destination ./service_worker.js",
+    "build": "tsc && node move_service_worker.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anathyon Erysson",
