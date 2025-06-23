@@ -8,6 +8,14 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Anathyon Erysson",
-  "keywords": ["gerador de senhas", "typescript", "pwa", "service worker"],
-  "license": "ISC"
+  "keywords": [
+    "gerador de senhas",
+    "typescript",
+    "pwa",
+    "service worker"
+  ],
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
 }
