@@ -22,4 +22,4 @@ self.addEventListener('fetch', (event: any) => {
       return response || fetch(event.request)
     })
   )
-})
+});
