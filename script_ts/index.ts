@@ -114,13 +114,19 @@ senha.addEventListener("click", ():void => {
      }
 })
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', async () => {
+async function registrarServiceWorker() {
+  if ('serviceWorker' in navigator) {
     try {
-      const registration = await navigator.serviceWorker.register('/script_js/service_worker.js')
-      console.log('✔ Service Worker registrado com sucesso:', registration)
-    } catch (error) {
-      console.error('❌ Erro ao registrar Service Worker:', error)
+      const registro = await navigator.serviceWorker.register('/service_worker.js')
+      console.log('✅ Service Worker registrado com sucesso!', registro)
+    } catch (erro) {
+      console.error('❌ Erro ao registrar Service Worker:', erro)
     }
-  })
+  } else {
+    console.warn('⚠️ Este navegador não suporta Service Workers.')
+  }
 }
+
+document.addEventListener('DOMContentLoaded', ():void => {
+  registrarServiceWorker()
+})

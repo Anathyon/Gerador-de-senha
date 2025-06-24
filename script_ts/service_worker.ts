@@ -5,7 +5,7 @@ const urls_cache = [
   '/CSS/index.css',
   '/script_js/index.js',
   '/Imagens/icon.png',
-  '/Imagens/Gerador de senhas.png'
+  '/Imagens/Gerador-de-senhas.png'
 ]
 
 self.addEventListener('install', (event: any) => {
