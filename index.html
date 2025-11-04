@@ -3,44 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#000000">  
+    <meta name="theme-color" content="#000000"> 
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="./Imagens/icon.png">
-    <title>Gerador de senhas</title>
+    <title>Gerador de Senhas Neon</title>
     <link rel="stylesheet" href="CSS/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=WDXL+Lubrifont+TC&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-     <header id="logo">
-        <img src="./Imagens/Gerador-de-senhas.png" alt="Logo-lendária" draggable="false">
-    </header>
-   <main id="conteudo_principal">
-        <span id="valor">Quantidade de caracteres:<span id="Quantidade"></span></span>
-        <input type="range" min="8" max="25" value="8" id="range">
-        <label for="titulo">Título para senha:</label>
-        <input maxlength="30" type="text" id="titulo" placeholder="Título da senha">
-        <button id="btn_gera_senha" class="bt_style">GERE SUA SENHA</button>
-      
-      <section> 
-          <button id="btn_exibir_historico" class="bt_style">EXIBIR HISTÓRICO</button> 
-          <dialog id="historico_dialog">
-              <H1 style="margin-bottom: 3%;"> Histórico de senhas</H1>
-              <ul id="historico_lista"></ul>
-            <section class="bts_org">
-              <button id="btn_fechar" class="bt_style bts_org">FECHAR</button>
-              <button id="btn_limpar_historico" class="bt_style bts_org">LIMPAR HISTÓRICO</button>
+    <div class="layout-container">
+        <header id="logo">
+            <h1 class="neon-title">GERADOR DE SENHAS</h1>
+            <div class="brand-description">
+            </div>
+        </header>
+        
+        <main id="conteudo_principal">
+            
+            <div id="comprimento-container">
+                <span id="valor">Comprimento: <span id="Quantidade">16</span> caracteres</span>
+                <input type="range" min="8" max="32" value="16" id="range">
+            </div>
+            
+            <div class="advanced-options">
+                <div class="option-group">
+                    <label class="option-label">Letras maiúsculas</label>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="uppercase" checked>
+                        <div class="checkbox-custom"></div>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label class="option-label">Letras minúsculas</label>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="lowercase" checked>
+                        <div class="checkbox-custom"></div>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label class="option-label">Números</label>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="numbers" checked>
+                        <div class="checkbox-custom"></div>
+                    </div>
+                </div>
+                <div class="option-group">
+                    <label class="option-label">Símbolos especiais</label>
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="symbols">
+                        <div class="checkbox-custom"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="identificador-container">
+                <label for="titulo">Identificador:</label>
+                <input maxlength="30" type="text" id="titulo" placeholder="Ex: Email, Redes sociais">
+            </div>
+            
+            <button id="btn_gera_senha" class="bt_style">GERAR SENHA</button>
+          
+            <section id="local_senha" class="hide">
+                <span id="txt_senha">Sua senha neon:</span>
+                <div style="position: relative; width: 100%; display: flex; justify-content: center; align-items: center;">
+                    <span id="senha"></span>
+                    </div>
+                
+                <div class="strength-indicator">
+                    <div class="strength-bar" id="strength_bar"></div>
+                </div>
+                <div class="strength-text" id="strength_text"></div>
             </section>
-          </dialog>
-      </section>
 
-      <section id="local_senha" class="hide">
-        <span id="txt_senha">Sua senha gerada foi:</span>
-        <span id="senha"></span>
-        <span id="sp_hov" class="mobile">Clique sobre sua senha para a copiar! </span> 
-      </section>   
-   </main>
+            <section style="width: 100%; display: flex; justify-content: center;"> 
+                <button id="btn_exibir_historico" class="bt_style" style="width: 80%;">HISTÓRICO</button> 
+            </section>
+            
+            <dialog id="historico_dialog">
+                <h1>Histórico de Senhas</h1>
+                <ul id="historico_lista"></ul>
+                <section class="bts_org">
+                    <button id="btn_fechar" class="bt_style">FECHAR</button>
+                    <button id="btn_limpar_historico" class="bt_style">LIMPAR</button>
+                </section>
+            </dialog>
+        </main>
+    </div>
+
+    <div id="toast" class="toast">
+        <svg class="toast-icon" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        </svg>
+        <span id="toast_message">Senha copiada!</span>
+    </div>
+
     <script src="/script_js/index.js"></script>
 </body>
 </html>
