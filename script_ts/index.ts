@@ -15,7 +15,6 @@ const inputSimbolos = document.querySelector("#symbols") as HTMLInputElement
 // Exibição de Senha
 const localSenha = document.querySelector("#local_senha") as HTMLElement
 const senhaDisplay = document.querySelector("#senha") as HTMLSpanElement
-const btnCopiar = document.querySelector("#copy_btn") as HTMLButtonElement
 const strengthBar = document.querySelector("#strength_bar") as HTMLElement
 const strengthText = document.querySelector("#strength_text") as HTMLElement
 
@@ -264,8 +263,8 @@ const copiarSenha = (texto: string): void => {
         })
 }
 
-// Copia ao clicar no botão COPIAR
-btnCopiar.addEventListener("click", (): void => {
+// Copia ao clicar na senha exibida
+senhaDisplay.addEventListener("click", (): void => {
     if (senhaDisplay.innerText) {
         copiarSenha(senhaDisplay.innerText)
     }
@@ -276,7 +275,7 @@ btnCopiar.addEventListener("click", (): void => {
 async function registrarServiceWorker() {
     if ('serviceWorker' in navigator) {
         try {
-            const registro = await navigator.serviceWorker.register('/service_worker.js')
+            const registro = await navigator.serviceWorker.register('./service_worker.js')
             console.log('✅ Service Worker registrado com sucesso!', registro)
         } catch (erro) {
             console.error('❌ Erro ao registrar Service Worker:', erro)
@@ -284,6 +283,37 @@ async function registrarServiceWorker() {
     }
 }
 
+// --- Feedback Visual para Filtros ---
+
+/** Adiciona feedback visual quando filtros são alterados */
+function addFilterFeedback(): void {
+    const checkboxes = [inputMaiusculas, inputMinusculas, inputNumeros, inputSimbolos]
+    
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function(): void {
+            const wrapper = this.closest('.option-group') as HTMLElement
+            const label = wrapper.querySelector('.option-label') as HTMLElement
+            
+            if (this.checked) {
+                wrapper.style.transform = 'scale(1.02)'
+                label.style.color = 'var(--primary-light)'
+                label.style.textShadow = '0 0 10px rgba(0, 255, 65, 0.8)'
+                showToast(`${label.textContent} ativado!`, 'success')
+            } else {
+                wrapper.style.transform = 'scale(1)'
+                label.style.color = 'var(--text-secondary)'
+                label.style.textShadow = '0 0 5px rgba(0, 255, 65, 0.3)'
+                showToast(`${label.textContent} desativado!`, 'error')
+            }
+            
+            setTimeout(() => {
+                wrapper.style.transform = 'scale(1)'
+            }, 200)
+        })
+    })
+}
+
 document.addEventListener('DOMContentLoaded', (): void => {
     registrarServiceWorker()
+    addFilterFeedback()
 })

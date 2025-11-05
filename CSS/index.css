@@ -301,6 +301,14 @@ body::before {
   text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
 }
 
+.option-group {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.option-label {
+  transition: all 0.3s ease;
+}
+
 .option-group:last-child {
   margin-bottom: 0;
 }
@@ -321,6 +329,7 @@ body::before {
   position: absolute;
   opacity: 0;
   cursor: pointer;
+  pointer-events: auto;
 }
 
 .checkbox-custom {
@@ -333,6 +342,7 @@ body::before {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border: 2px solid var(--border-color);
   box-shadow: var(--shadow-sm);
+  pointer-events: auto;
 }
 
 .checkbox-custom::after {
@@ -381,6 +391,11 @@ body::before {
   width: 100%;
   font-family: inherit;
   box-shadow: var(--shadow-md);
+  pointer-events: auto !important;
+  user-select: text !important;
+  cursor: text !important;
+  z-index: 10;
+  position: relative;
 }
 
 #titulo:focus {
@@ -605,6 +620,63 @@ body::before {
     text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
 }
 
+
+/* Senhas Geradas Recentemente */
+#senhas_geradas {
+  width: 100%;
+  background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary));
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  margin: var(--space-md) 0;
+  border: 2px solid var(--border-color);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+#senhas_geradas.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#senhas_geradas h3 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-lg);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+.senha-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  margin-bottom: var(--space-sm);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: monospace;
+  font-size: 0.9rem;
+  word-break: break-all;
+}
+
+.senha-item:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.6);
+  transform: translateX(4px);
+}
+
+.senha-item .titulo {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin-bottom: var(--space-xs);
+}
+
+.senha-item .senha {
+  color: var(--primary-light);
+  font-weight: 600;
+}
 
 /* History Section */
 section:last-child {

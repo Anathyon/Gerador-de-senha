@@ -13,7 +13,6 @@ const inputSimbolos = document.querySelector("#symbols");
 // Exibição de Senha
 const localSenha = document.querySelector("#local_senha");
 const senhaDisplay = document.querySelector("#senha");
-const btnCopiar = document.querySelector("#copy_btn");
 const strengthBar = document.querySelector("#strength_bar");
 const strengthText = document.querySelector("#strength_text");
 // Histórico e Diálogo
@@ -149,14 +148,14 @@ btnGerador.addEventListener("click", function () {
     senhaDisplay.innerHTML = senhaFinal;
     localSenha.classList.add("show");
     updateStrengthIndicator(senhaFinal);
-    // 5. Salva no histórico (só se for diferente da última senha, para evitar spam)
+    // 5. Salva no histórico e exibe na seção de senhas recentes
     const titulo = inputTitulo.value || "Sem título";
     const historicoArray = JSON.parse(localStorage.getItem("historicoSenhas") || "[]");
-    // Verifica se a última senha salva é a mesma
     const ultimaSenha = historicoArray.length > 0 ? historicoArray[historicoArray.length - 1].split(': ')[1] : '';
     if (senhaFinal !== ultimaSenha) {
         historicoArray.push(`${titulo}: ${senhaFinal}`);
         localStorage.setItem("historicoSenhas", JSON.stringify(historicoArray));
+        atualizarSenhasRecentes();
     }
 });
 // --- Histórico e Eventos de UI ---
@@ -227,8 +226,8 @@ const copiarSenha = (texto) => {
         showToast("Erro ao copiar. Tente novamente!", "error");
     });
 };
-// Copia ao clicar no botão COPIAR
-btnCopiar.addEventListener("click", () => {
+// Copia ao clicar na senha exibida
+senhaDisplay.addEventListener("click", () => {
     if (senhaDisplay.innerText) {
         copiarSenha(senhaDisplay.innerText);
     }
@@ -237,7 +236,7 @@ btnCopiar.addEventListener("click", () => {
 async function registrarServiceWorker() {
     if ('serviceWorker' in navigator) {
         try {
-            const registro = await navigator.serviceWorker.register('/service_worker.js');
+            const registro = await navigator.serviceWorker.register('./service_worker.js');
             console.log('✅ Service Worker registrado com sucesso!', registro);
         }
         catch (erro) {
@@ -245,6 +244,77 @@ async function registrarServiceWorker() {
         }
     }
 }
+// --- Feedback Visual para Filtros ---
+/** Adiciona feedback visual quando filtros são alterados */
+function addFilterFeedback() {
+    const checkboxes = [inputMaiusculas, inputMinusculas, inputNumeros, inputSimbolos];
+    checkboxes.forEach(checkbox => {
+        const wrapper = checkbox.closest('.option-group');
+        const customCheckbox = wrapper.querySelector('.checkbox-custom');
+        
+        // Evento no checkbox
+        checkbox.addEventListener('change', function () {
+            updateCheckboxVisual(this);
+        });
+        
+        // Evento no wrapper para garantir clique
+        customCheckbox.addEventListener('click', function () {
+            checkbox.checked = !checkbox.checked;
+            updateCheckboxVisual(checkbox);
+        });
+    });
+}
+
+function updateCheckboxVisual(checkbox) {
+    const wrapper = checkbox.closest('.option-group');
+    const label = wrapper.querySelector('.option-label');
+    if (checkbox.checked) {
+        wrapper.style.transform = 'scale(1.02)';
+        label.style.color = 'var(--primary-light)';
+        label.style.textShadow = '0 0 10px rgba(0, 255, 65, 0.8)';
+        showToast(`${label.textContent} ativado!`, 'success');
+    } else {
+        wrapper.style.transform = 'scale(1)';
+        label.style.color = 'var(--text-secondary)';
+        label.style.textShadow = '0 0 5px rgba(0, 255, 65, 0.3)';
+        showToast(`${label.textContent} desativado!`, 'error');
+    }
+    setTimeout(() => {
+        wrapper.style.transform = 'scale(1)';
+    }, 200);
+}
+/** Atualiza a seção de senhas geradas recentemente */
+function atualizarSenhasRecentes() {
+    const senhasGeradasSection = document.querySelector('#senhas_geradas');
+    const listaSenhasRecentes = document.querySelector('#lista_senhas_recentes');
+    const historicoArray = JSON.parse(localStorage.getItem('historicoSenhas') || '[]');
+    
+    if (historicoArray.length === 0) {
+        senhasGeradasSection.classList.remove('show');
+        return;
+    }
+    
+    listaSenhasRecentes.innerHTML = '';
+    const ultimasCinco = historicoArray.slice(-5).reverse();
+    
+    ultimasCinco.forEach(item => {
+        const [titulo, senha] = item.split(': ');
+        const senhaItem = document.createElement('div');
+        senhaItem.className = 'senha-item';
+        senhaItem.innerHTML = `
+            <div class="titulo">${titulo}</div>
+            <div class="senha">${senha}</div>
+        `;
+        senhaItem.addEventListener('click', () => copiarSenha(senha));
+        listaSenhasRecentes.appendChild(senhaItem);
+    });
+    
+    senhasGeradasSection.classList.remove('hide');
+    senhasGeradasSection.classList.add('show');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     registrarServiceWorker();
+    addFilterFeedback();
+    atualizarSenhasRecentes();
 });
