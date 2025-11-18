@@ -3,18 +3,18 @@
   "short_name": "Senhas",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#000000",
+  "theme_color": "#00ff41",
   "icons": [
     {
-      "src": "/Imagens/icon.png",
+      "src": "/Imagens/icon-192.svg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/svg+xml"
     },
     {
-      "src": "/Imagens/icon.png",
+      "src": "/Imagens/icon-512.svg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/svg+xml"
     }
   ]
 }

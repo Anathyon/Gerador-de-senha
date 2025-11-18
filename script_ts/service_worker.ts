@@ -4,8 +4,8 @@ const urls_cache = [
   '/index.html',
   '/CSS/index.css',
   '/script_js/index.js',
-  '/Imagens/icon.png',
-  '/Imagens/Gerador-de-senhas.png'
+  '/Imagens/icon-192.svg',
+  '/Imagens/icon-512.svg'
 ]
 
 self.addEventListener('install', (event: any) => {
